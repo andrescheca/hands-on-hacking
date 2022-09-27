@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf8" />
+    <link href="/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body class="h-full">
+    <!-- TailwindUI https://tailwindui.com/components/ecommerce/components/promo-sections -->
+    <div class="bg-white relative overflow-hidden">
+      <div aria-hidden="true" class="absolute inset-0">
+        <div class="absolute inset-0 mx-auto overflow-hidden">
+          <!-- Unsplash image: https://unsplash.com/photos/zepnJQycr4U -->
+          <img
+            src="/images/background.jpg"
+            alt=""
+            class="w-full h-full object-center object-cover"
+          />
+        </div>
+        <div class="absolute inset-0 bg-white bg-opacity-75"></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-white via-white"
+        ></div>
+      </div>
+
+      <section
+        aria-labelledby="sale-heading"
+        class="relative max-w-7xl min-h-screen mx-auto pt-32 px-4 flex flex-col items-center text-center sm:px-6 lg:px-8"
+      >
+        <div class="max-w-2xl mx-auto lg:max-w-none">
+          <h2
+            id="sale-heading"
+            class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
+          >
+            Here is your promo code
+          </h2>
+          <p
+            id="promo"
+            class="uppercase tabular-nums font-mono mt-16 max-w-xl mx-auto text-2xl text-gray-900"
+          ></p>
+          <a
+            href="#"
+            id="cta-button"
+            class="mt-16 inline-block w-full bg-gray-900 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-gray-800 sm:w-auto"
+            >Redirect to store</a
+          >
+        </div>
+      </section>
+    </div>
+    <script>
+      const code = Math.random().toString(16).substring(2);
+      const queryString = window.location.search;
+      const searchParams = new URLSearchParams(queryString);
+      const label = searchParams.get("label");
+      const url = searchParams.get("url");
+      const ctaButton = document.querySelector("#cta-button");
+
+      document.querySelector("#promo").innerHTML = code;
+
+      function goTo(newUrl) {
+        if (newUrl !== null) {
+          window.location.href = newUrl + "?code=" + code;
+        }
+      }
+
+      if (label !== null) {
+        ctaButton.innerHTML = label;
+      }
+
+      ctaButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        goTo(url);
+      });
+    </script>
+  </body>
+</html>

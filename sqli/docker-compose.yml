@@ -1,0 +1,28 @@
+version: "3"
+services:
+  sqlidb:
+    image: mysql:8.0.29
+    container_name: sqli-mysql-server-8029
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: dKGB3zL0Fto1ftsc6CeHxkiePyyGOzWcSMzCEfV6
+      MYSQL_DATABASE: sqli
+      MYSQL_USER: sqliuser
+      MYSQL_PASSWORD: TQK3tySYxHzTnRufECUdXzsCWIqA2jR82XZAV7yd
+    volumes:
+      - ./mysql.sql:/docker-entrypoint-initdb.d/init.sql
+  sqliweb:
+    depends_on:
+      - sqlidb
+    container_name: sqli-php-web
+    build: .
+    environment:
+      DB_HOST: sqlidb
+      DB_USER: sqliuser
+      DB_PASSWORD: TQK3tySYxHzTnRufECUdXzsCWIqA2jR82XZAV7yd
+      DB_DATABASE: sqli
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src:/var/www/localhost/htdocs

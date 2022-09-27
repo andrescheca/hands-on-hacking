@@ -1,0 +1,10 @@
+version: "3"
+services:
+  fileinclusionweb:
+    container_name: fileinclusion-php-web
+    build: ./web/
+    ports:
+      - "8006:80"
+    volumes:
+      - ./web/src:/var/www/html
+      - ./insecure.ini:/usr/local/etc/php/conf.d/insecure.ini

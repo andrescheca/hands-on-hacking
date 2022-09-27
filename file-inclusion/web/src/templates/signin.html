@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In/Out</title>
+  </head>
+  <body>
+    <h1>Sign In/Out</h1>
+    <p>
+      {% if user %}
+      Hi {{ user.name }}, you are signed in.
+      {% else %}
+      You are not signed in.
+      {% endif %}
+    </p>
+    <p>
+      <form action="/signin" method="POST">
+        <input type="submit" value="Sign In" />
+      </form>
+    </p>
+    <p>
+      <form action="/signout" method="POST">
+        <input type="submit" value="Sign Out" />
+      </form>
+    </p>
+  </body>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Chapter {
+  id                   String @id @default(cuid())
+  index                Int
+  title                String @unique
+  menuTitle            String
+  description          String
+  composerName         String
+  containerName        String
+  composerFileLocation String
+}

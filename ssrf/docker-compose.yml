@@ -1,0 +1,9 @@
+version: "3"
+services:
+  ssrfweb:
+    container_name: ssrf-php-web
+    build: ./web/
+    ports:
+      - "8003:80"
+    volumes:
+      - ./web/src:/var/www/html

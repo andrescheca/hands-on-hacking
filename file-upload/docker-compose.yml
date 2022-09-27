@@ -1,0 +1,29 @@
+version: "3"
+services:
+  fileuploaddb:
+    image: mysql:8.0.29
+    container_name: fileupload-mysql-server-8029
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: MvHHei8bhIBasSFBeKaOQMDRrKhIbdgCtHCicV9m
+      MYSQL_DATABASE: fileupload
+      MYSQL_USER: fileuploaduser
+      MYSQL_PASSWORD: Jy0WLUKZbhnKo6H0CddadbyqDVOf155kZ5hQ3EE4
+    volumes:
+      - ./db/mysql.sql:/docker-entrypoint-initdb.d/init.sql
+  fileuploadweb:
+    depends_on:
+      - fileuploaddb
+    container_name: fileupload-php-web
+    build: ./web/
+    environment:
+      DB_HOST: fileuploaddb
+      DB_USER: fileuploaduser
+      DB_PASSWORD: Jy0WLUKZbhnKo6H0CddadbyqDVOf155kZ5hQ3EE4
+      DB_DATABASE: fileupload
+    ports:
+      - "8005:80"
+    volumes:
+      - ./web/src:/var/www/html
+      - ./secure.ini:/usr/local/etc/php/conf.d/secure.ini

@@ -1,0 +1,9 @@
+version: "3"
+services:
+  insecuredeserializationweb:
+    container_name: insecuredeserialization-php-web
+    build: ./web/
+    ports:
+      - "8007:80"
+    volumes:
+      - ./web/src:/var/www/html

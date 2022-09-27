@@ -1,0 +1,9 @@
+version: "3"
+services:
+  openredirectweb:
+    container_name: openredirect-php-web
+    build: ./web/
+    ports:
+      - "8004:80"
+    volumes:
+      - ./web/src:/var/www/html
