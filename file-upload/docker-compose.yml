@@ -25,5 +25,4 @@ services:
     ports:
       - "8005:80"
     volumes:
-      - ./web/src:/var/www/html
       - ./secure.ini:/usr/local/etc/php/conf.d/secure.ini
