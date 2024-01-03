@@ -4,6 +4,8 @@ Labs used in the Hands-on-hacking web apps book. This project is meant to be run
 ## Requirements
 NodeJS, Docker and docker compose plugin
 
+NodeJS version should be at most 18.18.0
+
 ## Install dependencies
 Install project dependencies:
 
